@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 class Task2Config(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'seminar1_app'
+    name = 'gameapp'

@@ -16,10 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import index, about, main, heads_or_tails, random_number_cube, random_number_hundred, get_last_results
+from .views import index as game_index, about, main, heads_or_tails, random_number_cube, random_number_hundred, get_last_results
 
 urlpatterns = [
-    path('', index, name='index'),
     path('main/', main, name='main'),
     path('about/', about, name='about'),
     path('coin/', heads_or_tails, name='coin'),
