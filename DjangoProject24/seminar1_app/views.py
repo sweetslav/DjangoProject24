@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Coin
 import random
 import logging
 
@@ -30,10 +31,11 @@ def about(request):
 
 
 def heads_or_tails(request):
-    list_of_choice = ["Heads", "Tails"]
-    result = random.choice(list_of_choice)
-    logger.info(f"The choice is {result}")
-    return HttpResponse(f"{result}")
+    coin_side = random.choice(["Heads", "Tails"])
+    coin = Coin(side=coin_side)
+    coin.save()
+    logger.info(f"The choice is {coin_side}")
+    return HttpResponse(f"{coin_side}")
 
 
 def random_number_cube(request):
@@ -46,3 +48,12 @@ def random_number_hundred(request):
     result_num = random.randint(1, 100)
     logger.info(f"The random number is {result_num}")
     return HttpResponse(f'random number: {result_num}')
+
+
+def get_last_results(request):
+    list_of_coin_values = Coin.get_last_results()
+    if list_of_coin_values:
+        result_string = '<br>'.join(str(value) for value in list_of_coin_values)
+        return HttpResponse(result_string)
+    else:
+        return HttpResponse("No results found.")
