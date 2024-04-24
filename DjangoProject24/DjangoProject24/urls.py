@@ -23,4 +23,5 @@ urlpatterns = [
     path('', index, name='index'),
     path('game/', include('gameapp.urls')),
     path('blog/', include('blogapp.urls')),
+    path('shop/', include('shopapp.urls')),
 ]
