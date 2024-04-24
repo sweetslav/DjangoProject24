@@ -36,10 +36,12 @@ class Order(models.Model):
     ]
 
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    products = models.ManyToManyField(Product)
     total = models.DecimalField(max_digits=8, decimal_places=2)
     date_ordered = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
 
     def __str__(self):
-        return f'{self.client.name} | {self.product} | Status: {self.get_status_display()}'
+        return (f'{self.client.name} | {", ".join(str(product) for product in self.products.all())} | '
+                f'Status: {self.get_status_display()}')
+
