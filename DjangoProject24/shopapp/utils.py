@@ -1,6 +1,7 @@
 from faker import Faker
 from shopapp.models import Client, Product, Order
 import logging
+
 fake = Faker()
 
 logger = logging.getLogger('shopapp')
