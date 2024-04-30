@@ -21,33 +21,48 @@ def main(request):
                         "<h4>mi mus causae egestas pretium errem montes rutrum malesuada wisi</h4><br>")
 
 
-def about(request):
-    logger.info("Someone has visited the 'about me' page ")
-    return HttpResponse("<h1>This is About page</h1><br>"
-                        "<h4>Name: Svyatoslav</h4><br>"
-                        "<h4>Age: 29</h4><br>"
-                        "<h4>City: Saint-Petersburg</h4><br>"
-                        "<h4>Email: sweet@example.com</h4><br>")
+def heads_or_tails(request, count):
+    results = []
+    for _ in range(count):
+        coin_side = random.choice(["Орёл", "Решка"])
+        results.append(coin_side)
+        coin = Coin(side=coin_side)
+        coin.save()
+        logger.info(f"Результат броска: {coin_side}")
+
+    context = {
+        'game_name': "Орёл и решка",
+        'results': results
+    }
+    return render(request, "gameapp/games.html", context)
 
 
-def heads_or_tails(request):
-    coin_side = random.choice(["Heads", "Tails"])
-    coin = Coin(side=coin_side)
-    coin.save()
-    logger.info(f"The choice is {coin_side}")
-    return HttpResponse(f"{coin_side}")
+def random_number_cube(request, count):
+    results = []
+    for _ in range(count):
+        result_cube = random.randint(1, 6)
+        results.append(result_cube)
+        logger.info(f"Результат броска кубика: {result_cube}")
+
+    context = {
+        'game_name': "Игральные кости",
+        'results': results
+    }
+    return render(request, "gameapp/games.html", context)
 
 
-def random_number_cube(request):
-    result_cube = random.randint(1, 6)
-    logger.info(f"The cube side is {result_cube}")
-    return HttpResponse(f'random number: {result_cube}')
+def random_number_hundred(request, count):
+    results = []
+    for _ in range(count):
+        result_num = random.randint(1, 100)
+        results.append(result_num)
+        logger.info(f"Случайное число: {result_num}")
 
-
-def random_number_hundred(request):
-    result_num = random.randint(1, 100)
-    logger.info(f"The random number is {result_num}")
-    return HttpResponse(f'random number: {result_num}')
+    context = {
+        'game_name': "Случайное число",
+        'results': results
+    }
+    return render(request, "gameapp/games.html", context)
 
 
 def get_last_results(request):

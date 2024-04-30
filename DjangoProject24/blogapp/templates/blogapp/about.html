@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Моё резюме
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header>
+        <h1>{{name}} {{last_name}}</h1>
+        <div class="contact-info">
+            <p>Дата рождения: {{birthday}}</p>
+            <p>Эл. почта: {{Email}}</p>
+            <p>Телефон: 123-456-7890</p>
+            <p>Адрес: Улица, Город, Страна</p>
+        </div>
+    </header>
+
+    <section class="section">
+        <h2>Образование</h2>
+        <p>Название вашего университета, степень, специализация, год окончания.</p>
+    </section>
+
+    <section class="section">
+        <h2>Опыт работы</h2>
+        <p>Название компании, ваша должность, период работы, обязанности и достижения.</p>
+    </section>
+
+    <section class="section">
+        <h2>Навыки</h2>
+        <ul>
+            <li>Навык 1</li>
+            <li>Навык 2</li>
+            <li>Навык 3</li>
+            <!-- Добавьте свои навыки -->
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>Проекты</h2>
+        <p>Опишите ваши проекты и достижения.</p>
+    </section>
+
+    <section class="section">
+        <h2>Дополнительная информация</h2>
+        <p>Любая другая информация, которую считаете важной.</p>
+    </section>
+
+    <footer>
+        <p>Связаться со мной: example@example.com</p>
+    </footer>
+</div class="container">
+{% endblock %}

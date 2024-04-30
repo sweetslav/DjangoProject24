@@ -1,5 +1,5 @@
 """
-URL configuration for DjangoProject24 project.
+URL configuration for config project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.0/topics/http/urls/
@@ -16,10 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from blogapp.views import index as blog_index, read_authors, write_authors
+from blogapp.views import read_authors, write_authors, about, aboutme
 
 urlpatterns = [
-    path('', blog_index, name='index'),
     path('authors/', read_authors, name='read_authors'),
     path('write_authors/', write_authors, name='write_authors'),
+    path('about/', about, name='about'),
+    path('aboutme/', aboutme, name='aboutme'),
 ]

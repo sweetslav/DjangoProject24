@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            Главная страница
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        {% block content %}
+        <h1>Добро пожаловать на мою стартовую страницу!</h1>
+        <ul>
+            <li><a href="{% url 'about' %}">Обо мне</a></li>
+            <li><a href="{% url 'aboutme' %}">Создатель</a></li>
+        </ul>
+
+        <h2>Игры:</h2>
+        <ul>
+            <li><a href="{% url 'coin' 1 %}">Подбрасывание монеты</a></li>
+            <li><a href="{% url 'cube' 2 %}">Бросок кубиков</a></li>
+            <li><a href="{% url 'hundred' 1  %}">Случайное число до 100</a></li>
+            <li><a href="{% url 'last_results' %}">Последние результаты подбрасывания монетки</a></li>
+        </ul>
+
+        <h2>Блог:</h2>
+        <ul>
+            <li><a href="{% url 'read_authors' %}">Авторы</a></li>
+            <li><a href="{% url 'write_authors' %}">Добавить в базу 20 авторов</a></li>
+        </ul>
+
+        <h2>Магазин:</h2>
+        <ul>
+        </ul>
+        {% endblock %}
+    </div class="container">
+</body>
+</html>

@@ -1,5 +1,5 @@
 """
-URL configuration for DjangoProject24 project.
+URL configuration for config project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.0/topics/http/urls/
@@ -16,14 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import index as game_index, about, main, heads_or_tails, random_number_cube, random_number_hundred, \
+from .views import index as game_index, main, heads_or_tails, random_number_cube, random_number_hundred, \
     get_last_results
 
 urlpatterns = [
     path('main/', main, name='main'),
-    path('about/', about, name='about'),
-    path('coin/', heads_or_tails, name='coin'),
-    path('cube/', random_number_cube, name='cube'),
-    path('hundred/', random_number_hundred, name='hundred'),
+    path('coin/<int:count>/', heads_or_tails, name='coin'),
+    path('cube/<int:count>/', random_number_cube, name='cube'),
+    path('hundred/<int:count>/', random_number_hundred, name='hundred'),
     path('last_coins/', get_last_results, name='last_results'),
 ]
