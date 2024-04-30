@@ -18,6 +18,6 @@ class Command(BaseCommand):
                 phone=fake.phone_number(),
                 address=fake.address(),
             )
-            logger.info(f"Created new client: {client.pk}")
+            logger.info(f"\nCreated new client: {client.pk}")
         except Exception as e:
             logger.error(f"Error creating fake client: {e}")

@@ -24,7 +24,7 @@ class Product(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'Name: {self.name},\nPrice: {self.price},\nQuantity: {self.quantity} '
+        return f'\nName: {self.name},\tPrice: {self.price},\tQuantity: {self.quantity} '
 
 
 class Order(models.Model):
@@ -42,6 +42,5 @@ class Order(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
 
     def __str__(self):
-        return (f'{self.client.name} | {", ".join(str(product) for product in self.products.all())} | '
-                f'Status: {self.get_status_display()}')
+        return (f'\t{self.client.name}\t{", ".join(str(product) for product in self.products.all())}\tStatus: {self.get_status_display()}')
 

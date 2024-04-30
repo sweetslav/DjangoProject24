@@ -42,6 +42,6 @@ class Command(BaseCommand):
                 )
                 order.products.add(*products)
 
-                logger.info(f"Created new order: {order}")
+                logger.info(f"\nCreated new order: {order}")
         except Exception as e:
             logger.error(f"Error creating fake orders: {e}")

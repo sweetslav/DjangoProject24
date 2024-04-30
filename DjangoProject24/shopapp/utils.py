@@ -1,5 +1,6 @@
 from faker import Faker
 from shopapp.models import Client, Product, Order
+from django.shortcuts import render, get_object_or_404, HttpResponseRedirect, reverse
 import logging
 
 fake = Faker()
@@ -96,3 +97,33 @@ def create_fake_orders(num_orders=5, num_products_per_order=3):
             logger.info(f"Created new order: {order}")
     except Exception as e:
         logger.error(f"Error creating fake orders: {e}")
+
+
+# Функция для получения всех клиентов
+def get_all_clients(request):
+    return Client.objects.all()
+
+
+# Функция для получения всех товаров
+def get_all_products(request):
+    return Product.objects.all()
+
+
+# Функция для получения всех заказов
+def get_all_orders(request):
+    return Order.objects.all()
+
+
+# Функция для получения клиента по ID
+def get_client_by_id(client_id):
+    return get_object_or_404(Client, pk=client_id)
+
+
+# Функция для получения товара по ID
+def get_product_by_id(product_id):
+    return get_object_or_404(Product, pk=product_id)
+
+
+# Функция для получения заказа по ID
+def get_order_by_id(order_id):
+    return get_object_or_404(Order, pk=order_id)

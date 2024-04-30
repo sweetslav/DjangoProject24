@@ -9,9 +9,9 @@ class Command(BaseCommand):
     help = 'Create a new order'
 
     def add_arguments(self, parser):
-        parser.add_argument('client_id', type=int, help='ID of the client for the order')
-        parser.add_argument('product_ids', nargs='+', type=int, help='IDs of products for the order')
-        parser.add_argument('total', type=float, help='Total amount for the order')
+        parser.add_argument('--client_id', type=int, help='ID of the client for the order')
+        parser.add_argument('--product_ids', nargs='+', type=int, help='IDs of products for the order')
+        parser.add_argument('--total', type=float, help='Total amount for the order')
 
     def handle(self, *args, **options):
         client_id = options['client_id']

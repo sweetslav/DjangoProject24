@@ -18,6 +18,6 @@ class Command(BaseCommand):
                 price=fake.random_int(min=1, max=10_000),
                 quantity=fake.random_int(min=1, max=100),
             )
-            logger.info(f"Created new product: {product.pk}")
+            logger.info(f"\n Created new product: {product.pk}")
         except Exception as e:
             logger.error(f"Error creating fake product: {e}")
