@@ -5,7 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -40,7 +39,9 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('total', models.DecimalField(decimal_places=2, max_digits=8)),
                 ('date_ordered', models.DateTimeField(auto_now_add=True)),
-                ('status', models.CharField(choices=[('pending', 'Pending'), ('processed', 'Processed'), ('shipped', 'Shipped'), ('cancelled', 'Cancelled')], default='pending', max_length=20)),
+                ('status', models.CharField(
+                    choices=[('pending', 'Pending'), ('processed', 'Processed'), ('shipped', 'Shipped'),
+                             ('cancelled', 'Cancelled')], default='pending', max_length=20)),
                 ('client', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='shopapp.client')),
                 ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='shopapp.product')),
             ],

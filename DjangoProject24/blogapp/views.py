@@ -78,6 +78,7 @@ def about(request):
     return render(request, 'blogapp/about.html')
 
 
-def aboutme (request):
-    context = {'name': 'Святослав', 'last_name': 'Кривошеев', 'birthday':'04.02.1995', 'email':'sweetslav@example.com'}
+def aboutme(request):
+    context = {'name': 'Святослав', 'last_name': 'Кривошеев', 'birthday': '04.02.1995',
+               'email': 'sweetslav@example.com'}
     return render(request, 'blogapp/about.html', context)

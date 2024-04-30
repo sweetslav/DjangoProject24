@@ -12,8 +12,9 @@
 </head>
 <body>
     <div class="container">
+        <li><a href="{% url 'base' %}">На главную</a></li>
         {% block content %}
-        <h1>Добро пожаловать на мою стартовую страницу!</h1>
+        <h1>Добро пожаловать на мой сайт!</h1>
         <ul>
             <li><a href="{% url 'about' %}">Обо мне</a></li>
             <li><a href="{% url 'aboutme' %}">Создатель</a></li>
@@ -35,8 +36,14 @@
 
         <h2>Магазин:</h2>
         <ul>
+            <li><a href="{% url 'shop_index' %}">Индекс</a></li>
+            <li><a href="{% url 'all_clients_view' %}">Все клиенты</a></li>
+            <li><a href="{% url 'all_products_view' %}">Все продукты</a></li>
+            <li><a href="{% url 'all_orders_view' %}">Все заказы</a></li>
+            <li><a href="{% url 'view_order_by_client_id' client_id=207 %}">Поиск заказа по ID клиента</a></li>
+            <li><a href="{% url 'ordered_products_by_period' client_id=207 period='month' %}">Поиск заказов за период</a></li>
         </ul>
         {% endblock %}
-    </div class="container">
+    </div>
 </body>
 </html>

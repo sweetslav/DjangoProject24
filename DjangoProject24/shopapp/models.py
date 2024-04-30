@@ -42,5 +42,6 @@ class Order(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
 
     def __str__(self):
-        return (f'\t{self.client.name}\t{", ".join(str(product) for product in self.products.all())}\tStatus: {self.get_status_display()}')
-
+        return (
+            f'\t{self.client.name}\t{", ".join(str(product) for product in self.products.all())}'
+            f'\tStatus: {self.get_status_display()}')
