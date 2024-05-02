@@ -42,10 +42,8 @@ class Command(BaseCommand):
             self.stdout.write(self.style.ERROR(error_message))
             logger.error(error_message)
 
-# Пример команды в терминале для создания одной статьи с идентификатором автора 1:
+# Пример команды в терминале для создания одной статьи с ID автора 13:
+# python manage.py create_fake_article 13
 #
-# python manage.py create_article 1
-#
-# Эта команда создаст три статьи с автором, имеющим идентификатор 1:
-#
-# python manage.py create_article 1 --num 3
+# Эта команда создаст три статьи с автором, имеющим ID 28:
+# python manage.py create_fake_article 28 --num 3
