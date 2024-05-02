@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Форма добавления нового автора
+{% endblock %}
+
+{% block content %}
+
+      {% if response %}
+            {{ response }}
+
+      {% else %}
+            <form action="" method="post">
+                  {% csrf_token %}
+                  {{author_form.as_p}}
+                  <input type="submit" value="Отправить">
+            </form>
+      {% endif %}
+
+{% endblock %}

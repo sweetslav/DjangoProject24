@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Author
+from .forms import AuthorForm
 import logging
 from faker import Faker
 
@@ -82,3 +83,15 @@ def aboutme(request):
     context = {'name': 'Святослав', 'last_name': 'Кривошеев', 'birthday': '04.02.1995',
                'email': 'sweetslav@example.com'}
     return render(request, 'blogapp/about.html', context)
+
+
+def add_author_form(request):
+    if request.method == 'POST':
+        author_form = AuthorForm(request.POST)
+        if author_form.is_valid():
+            author = author_form.save()
+            logger.info(f'Добавлен новый автор {author.first_name} {author.last_name}')
+            return render(request, 'blogapp/add_author_form.html', {'response': 'Автор успешно добавлен'})
+    else:
+        author_form = AuthorForm()
+    return render(request, 'blogapp/add_author_form.html', {'author_form': author_form})

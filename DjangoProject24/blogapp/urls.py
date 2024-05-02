@@ -16,11 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from blogapp.views import read_authors, write_authors, about, aboutme
+from blogapp.views import read_authors, write_authors, about, aboutme, add_author_form
 
 urlpatterns = [
     path('authors/', read_authors, name='read_authors'),
     path('write_authors/', write_authors, name='write_authors'),
     path('about/', about, name='about'),
     path('aboutme/', aboutme, name='aboutme'),
+    path('authors/add/', add_author_form, name='add_author_form'),
 ]

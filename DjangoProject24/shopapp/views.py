@@ -78,4 +78,9 @@ def ordered_products_by_period(request, client_id, period):
     for order in client_orders:
         unique_products.update(order.products.all())
 
-    return render(request, 'shopapp/ordered_products_by_period.html', {'products': unique_products})
+    context = {
+        'products': unique_products,
+        'period': period,  # Добавлено значение периода в контекст
+    }
+
+    return render(request, 'shopapp/ordered_products_by_period.html', context)

@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .views import index as game_index, main, heads_or_tails, random_number_cube, random_number_hundred, \
-    get_last_results
+    get_last_results, game_form
 
 urlpatterns = [
     path('main/', main, name='main'),
@@ -25,4 +25,5 @@ urlpatterns = [
     path('cube/<int:count>/', random_number_cube, name='cube'),
     path('hundred/<int:count>/', random_number_hundred, name='hundred'),
     path('last_coins/', get_last_results, name='last_results'),
+    path('game_form/', game_form, name='game_form'),
 ]

@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import Coin
 import random
 import logging
+from .forms import GameForm
 
 logger = logging.getLogger(__name__)
 
@@ -71,4 +72,23 @@ def get_last_results(request):
         result_string = '<br>'.join(str(value) for value in list_of_coin_values)
         return HttpResponse(result_string)
     else:
-        return HttpResponse("No results found.")
+        return HttpResponse("Ничего не найдено.")
+
+
+def game_form(request):
+    if request.method == 'POST':
+        form = GameForm(request.POST)
+        if form.is_valid():
+            game_name = form.cleaned_data['game_name']
+            count = form.cleaned_data['count']
+            logger.info(f"Получены данные в форме")
+            if game_name == "coin":
+                return heads_or_tails(request, count)
+            elif game_name == "cube":
+                return random_number_cube(request, count)
+            elif game_name == "number":
+                return random_number_hundred(request, count)
+
+    else:
+        form = GameForm()
+        return render(request, "gameapp/game_form.html", {'form': form})

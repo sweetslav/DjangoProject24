@@ -22,6 +22,7 @@
 
         <h2>Игры:</h2>
         <ul>
+            <li><a href="{% url 'game_form' %}">Выбор игры</a></li>
             <li><a href="{% url 'coin' 1 %}">Подбрасывание монеты</a></li>
             <li><a href="{% url 'cube' 2 %}">Бросок кубиков</a></li>
             <li><a href="{% url 'hundred' 1  %}">Случайное число до 100</a></li>
@@ -31,6 +32,7 @@
         <h2>Блог:</h2>
         <ul>
             <li><a href="{% url 'read_authors' %}">Авторы</a></li>
+            <li><a href="{% url 'add_author_form' %}">Добавить в базу нового автора</a></li>
             <li><a href="{% url 'write_authors' %}">Добавить в базу 20 авторов</a></li>
         </ul>
 

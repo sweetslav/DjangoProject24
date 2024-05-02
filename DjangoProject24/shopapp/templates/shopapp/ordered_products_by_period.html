@@ -4,7 +4,10 @@
 
 {% block content %}
     <h1>Список заказанных товаров</h1>
-    <h2>За последние {% if period == 'week' %}7 дней{% elif period == 'month' %}30 дней{% else %}365 дней{% endif %}</h2>
+    <h2>За последние {% if period == 'week' %}7 дней
+        {% elif period == 'month' %}30 дней
+        {% else %}365 дней
+        {% endif %}</h2>
     <ul>
         {% for product in products %}
             <li>{{ product.name }}</li>
