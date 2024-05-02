@@ -10,6 +10,21 @@ fake = Faker()
 fake_ru = Faker('ru_RU')
 
 
+def view_all_authors(request):
+    authors = Author.objects.all()
+    return render(request, 'blogapp/view_all_authors.html', {'authors': authors})
+
+
+def view_all_articles(request):
+    articles = Article.objects.all()
+    return render(request, 'blogapp/view_all_articles.html', {'articles': articles})
+
+
+def view_all_comments(request):
+    comments = Comment.objects.all()
+    return render(request, 'blogapp/view_all_comments.html', {'comments': comments})
+
+
 # Представление для создания 10 авторов в базу
 def write_authors(request):
     logger.info("Someone has visited the Blog / Write Authors page ")
@@ -19,25 +34,25 @@ def write_authors(request):
         create_fake_author_female()
     logger.info("Created new authors")
     return HttpResponse("Created 20 new authors")
-
-
 # Представление для базового шаблона сайта
+
+
 def base_html(request):
     return render(request, 'base.html')
 
 
 def about(request):
     return render(request, 'blogapp/about.html')
-
-
 # Страница обо мне
+
+
 def aboutme(request):
     context = {'name': 'Святослав', 'last_name': 'Кривошеев', 'birthday': '04.02.1995',
                'email': 'sweetslav@example.com'}
     return render(request, 'blogapp/about.html', context)
-
-
 # Форма для добавления нового автора
+
+
 def add_author_form(request):
     if request.method == 'POST':
         author_form = AuthorForm(request.POST)
@@ -81,9 +96,9 @@ def get_comments_by_article_title(article_title, limit=None, sort_by='-created_a
         return comments
     else:
         return []
-
-
 # Представление для вывода всех заметок автора по его айди
+
+
 def author_articles(request, author_id=None):
     if author_id is not None:
         author = get_object_or_404(Author, author_id)
@@ -92,18 +107,3 @@ def author_articles(request, author_id=None):
         author = None
         articles = Article.objects.all().order_by('-published_date')
     return render(request, 'blogapp/author_articles.html', {'author': author, 'articles': articles})
-
-
-def view_all_authors(request):
-    authors = Author.objects.all()
-    return render(request, 'blogapp/view_all_authors.html', {'authors': authors})
-
-
-def view_all_articles(request):
-    articles = Article.objects.all()
-    return render(request, 'blogapp/view_all_articles.html', {'articles': articles})
-
-
-def view_all_comments(request):
-    comments = Comment.objects.all()
-    return render(request, 'blogapp/view_all_comments.html', {'comments': comments})
