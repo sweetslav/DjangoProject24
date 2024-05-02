@@ -1,8 +1,8 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from .models import Author, Article
-from .forms import AuthorForm
 import logging
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
+from .models import Author, Article, Comment
+from .forms import AuthorForm
 from faker import Faker
 
 logger = logging.getLogger(__name__)
@@ -48,3 +48,62 @@ def add_author_form(request):
     else:
         author_form = AuthorForm()
     return render(request, 'blogapp/add_author_form.html', {'author_form': author_form})
+
+
+def get_articles_by_author_name(author_name, limit=None, sort_by='-published_date'):
+    author = Author.objects.filter(full_name=author_name).first()
+    if author:
+        articles = Article.objects.filter(author=author).order_by(sort_by)
+        if limit:
+            articles = articles[:limit]
+        return articles
+    else:
+        return []
+
+
+def get_comments_by_author_name(author_name, limit=None, sort_by='-created_at'):
+    author = Author.objects.filter(full_name=author_name).first()
+    if author:
+        comments = Comment.objects.filter(author=author).order_by(sort_by)
+        if limit:
+            comments = comments[:limit]
+        return comments
+    else:
+        return []
+
+
+def get_comments_by_article_title(article_title, limit=None, sort_by='-created_at'):
+    article = Article.objects.filter(title=article_title).first()
+    if article:
+        comments = Comment.objects.filter(article=article).order_by(sort_by)
+        if limit:
+            comments = comments[:limit]
+        return comments
+    else:
+        return []
+
+
+# Представление для вывода всех заметок автора по его айди
+def author_articles(request, author_id=None):
+    if author_id is not None:
+        author = get_object_or_404(Author, author_id)
+        articles = Article.objects.filter(author=author).order_by('-published_date')
+    else:
+        author = None
+        articles = Article.objects.all().order_by('-published_date')
+    return render(request, 'blogapp/author_articles.html', {'author': author, 'articles': articles})
+
+
+def view_all_authors(request):
+    authors = Author.objects.all()
+    return render(request, 'blogapp/view_all_authors.html', {'authors': authors})
+
+
+def view_all_articles(request):
+    articles = Article.objects.all()
+    return render(request, 'blogapp/view_all_articles.html', {'articles': articles})
+
+
+def view_all_comments(request):
+    comments = Comment.objects.all()
+    return render(request, 'blogapp/view_all_comments.html', {'comments': comments})

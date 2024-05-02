@@ -16,7 +16,6 @@
         {% block content %}
         <h1>Добро пожаловать на мой сайт!</h1>
         <ul>
-            <li><a href="{% url 'about' %}">Резюме</a></li>
             <li><a href="{% url 'aboutme' %}">Обо мне</a></li>
         </ul>
 
@@ -31,13 +30,15 @@
 
         <h2>Блог:</h2>
         <ul>
+            <li><a href="{% url 'view_all_authors' %}">Посмотреть всех авторов</a></li>
+            <li><a href="{% url 'view_all_articles' %}">Посмотреть все статьи</a></li>
+            <li><a href="{% url 'view_all_comments' %}">Посмотреть все комментарии</a></li>
             <li><a href="{% url 'add_author_form' %}">Добавить в базу нового автора</a></li>
             <li><a href="{% url 'write_authors' %}">Добавить в базу 20 авторов</a></li>
         </ul>
 
         <h2>Магазин:</h2>
         <ul>
-            <li><a href="{% url 'shop_index' %}">Индекс</a></li>
             <li><a href="{% url 'all_clients_view' %}">Все клиенты</a></li>
             <li><a href="{% url 'all_products_view' %}">Все продукты</a></li>
             <li><a href="{% url 'all_orders_view' %}">Все заказы</a></li>

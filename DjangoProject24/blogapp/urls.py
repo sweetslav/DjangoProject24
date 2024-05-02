@@ -1,26 +1,12 @@
-"""
-URL configuration for config project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path, include
-from blogapp.views import write_authors, about, aboutme, add_author_form
-
+from . import views
 urlpatterns = [
-    path('write_authors/', write_authors, name='write_authors'),
-    path('about/', about, name='about'),
-    path('about/me/', aboutme, name='aboutme'),
-    path('authors/add/', add_author_form, name='add_author_form'),
+    path('write_authors/', views.write_authors, name='write_authors'),
+    path('about/', views.about, name='about'),
+    path('about/me/', views.aboutme, name='aboutme'),
+    path('author/add/', views.add_author_form, name='add_author_form'),
+    path('author/all', views.view_all_authors, name='view_all_authors'),
+    path('article/all', views.view_all_articles, name='view_all_articles'),
+    path('comment/all', views.view_all_comments, name='view_all_comments'),
 ]

@@ -45,6 +45,7 @@ def create_fake_author_female():
     author.save()
     return author
 
+
 # Создание новой статьи
 def create_article(title, content, author_id, category):
     article = Article.objects.create(

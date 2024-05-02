@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Все статьи
+{% endblock %}
+
+{% block content %}
+    <h1>Все статьи</h1>
+    <table width="800" border="1px">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Имя автора</th>
+                <th>Заголовок</th>
+                <th>Текст</th>
+                <th>Дата публикации</th>
+                <th>Категория</th>
+                <th>Количество просмотров</th>
+                <th>Статус публикации</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for article in articles %}
+            <tr>
+                <td>{{ article.id }}</td>
+                <td>{{ article.author.full_name }}</td>
+                <td>{{ article.title }}</td>
+                <td>{{ article.content }}</td>
+                <td>{{ article.published_date }}</td>
+                <td>{{ article.category }}</td>
+                <td>{{ article.views }}</td>
+                <td>{{ article.published }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

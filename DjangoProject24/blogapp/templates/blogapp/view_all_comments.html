@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Все комментарии
+{% endblock %}
+
+{% block content %}
+    <h1>Все комментарии</h1>
+    <table width="800" border="1px">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Автор</th>
+                <th>Статья</th>
+                <th>Текст</th>
+                <th>Дата комментария</th>
+                <th>Дата изменения</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for comment in comments %}
+            <tr>
+                <td>{{ comment.id }}</td>
+                <td>{{ comment.author }}</td>
+                <td>{{ comment.article }}</td>
+                <td>{{ comment.content }}</td>
+                <td>{{ comment.created_at }}</td>
+                <td>{{ comment.updated_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

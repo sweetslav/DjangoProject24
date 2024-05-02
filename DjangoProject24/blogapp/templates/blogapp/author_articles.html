@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ author.full_name }} - Статьи
+{% endblock %}
+
+{% block content %}
+<h1>{{ author.full_name }} - Статьи</h1>
+    <ul>
+        {% for article in articles %}
+            <li>
+                {% if article.published %}
+                    <a href="{% url 'article_detail' article.id %}">{{ article.title }}</a>
+                {% else %}
+                    {{ article.title }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
