@@ -1,6 +1,8 @@
 import logging
 from django.core.management.base import BaseCommand
+# noinspection PyUnresolvedReferences
 from shopapp.models import Order
+# noinspection PyUnresolvedReferences
 from shopapp.utils import create_fake_client, create_fake_product
 from faker import Faker
 

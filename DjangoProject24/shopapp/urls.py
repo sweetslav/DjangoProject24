@@ -24,5 +24,6 @@ urlpatterns = [
     path('products/', views.all_products_view, name='all_products_view'),
     path('orders/', views.all_orders_view, name='all_orders_view'),
     path('orders/<int:client_id>/', views.view_order_by_client_id, name='view_order_by_client_id'),
-    path('client/<int:client_id>/orders/<str:period>/', views.ordered_products_by_period, name='ordered_products_by_period'),
+    path('client/<int:client_id>/orders/<str:period>/', views.ordered_products_by_period,
+         name='ordered_products_by_period'),
 ]

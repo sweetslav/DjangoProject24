@@ -16,8 +16,8 @@
         {% block content %}
         <h1>Добро пожаловать на мой сайт!</h1>
         <ul>
-            <li><a href="{% url 'about' %}">Обо мне</a></li>
-            <li><a href="{% url 'aboutme' %}">Создатель</a></li>
+            <li><a href="{% url 'about' %}">Резюме</a></li>
+            <li><a href="{% url 'aboutme' %}">Обо мне</a></li>
         </ul>
 
         <h2>Игры:</h2>
@@ -31,7 +31,6 @@
 
         <h2>Блог:</h2>
         <ul>
-            <li><a href="{% url 'read_authors' %}">Авторы</a></li>
             <li><a href="{% url 'add_author_form' %}">Добавить в базу нового автора</a></li>
             <li><a href="{% url 'write_authors' %}">Добавить в базу 20 авторов</a></li>
         </ul>
