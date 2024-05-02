@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Author
+from .models import Author, Article
 from .forms import AuthorForm
 import logging
 from faker import Faker
