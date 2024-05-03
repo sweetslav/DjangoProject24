@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Редактирование статьи: {{ article.title }}
+{% endblock %}
+
+{% block content %}
+<h2>Редактирование статьи: {{ article.title }}</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ article_form.as_p }}
+  <button type="submit">Сохранить изменения</button>
+</form>
+{% endblock %}

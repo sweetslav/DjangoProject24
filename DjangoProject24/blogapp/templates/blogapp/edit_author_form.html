@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Редактирование автора: {{ author.full_name }}
+{% endblock %}
+
+{% block content %}
+<h2>Редактирование автора: {{ article.full_name }}</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ author_form.as_p }}
+  <button type="submit">Сохранить изменения</button>
+</form>
+{% endblock %}

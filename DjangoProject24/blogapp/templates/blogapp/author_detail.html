@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Детали автора: {{ author.full_name }}
+{% endblock %}
+
+{% block content %}
+  <h1>Детали автора: {{ author.full_name }}</h1>
+  <p><strong>Имя:</strong> {{ author.first_name }}</p>
+  <p><strong>Фамилия:</strong> {{ author.last_name }}</p>
+  <p><strong>Email:</strong> {{ author.email }}</p>
+  <p><strong>Биография:</strong> {{ author.biography }}</p>
+  <p><strong>Дата рождения:</strong> {{ author.birthday }}</p>
+  <p><a href="{% url 'edit_author' author.id %}">Редактировать автора</a></p>
+{% endblock %}
