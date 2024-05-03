@@ -44,13 +44,20 @@ def view_all_comments(request):
     return render(request, 'blogapp/view_all_comments.html', {'comments': comments})
 
 
-# Выводит статью по её ID
+# Выводит статью по её ID + добавил комменты
 def detail_article(request, article_id):
+    comment_form = CommentForm()
     article = get_object_or_404(Article, pk=article_id)
     article.views += 1
     article.save()
     comments = Comment.objects.filter(article=article).order_by('-updated_at')
-    return render(request, 'blogapp/detail_article.html', {'article': article, 'comments': comments})
+    context = {
+        'article': article,
+        'comments': comments,
+        'response': 'Комментарий успешно добавлен',
+        'comment_form': comment_form,
+    }
+    return render(request, 'blogapp/detail_article.html', context)
 
 
 # Выводит автора по его ID
@@ -101,7 +108,7 @@ def add_comment_form(request, article_id):
             comment.article = article  # Присваиваем комментарию статью
             comment.save()
             logger.info(f'Добавлен новый комментарий {comment.content}')
-            return render(request, 'blogapp/add_comment_form.html', {'response': 'Комментарий успешно добавлен'})
+            return redirect('detail_article', article_id=article_id)
     else:
         comment_form = CommentForm()
     return render(request, 'blogapp/add_comment_form.html', {'comment_form': comment_form, 'article': article})

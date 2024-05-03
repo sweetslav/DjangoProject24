@@ -5,7 +5,10 @@
 {% endblock %}
 
 {% block content %}
-<h1>{{ article.title }}</h1>
+    <a href="{% url 'edit_article' article.id %}">Редактировать статью</a>
+    <a href="{% url 'delete_article' article.id %}">Удалить статью</a>
+    
+    <h1>{{ article.title }}</h1>
     <p>Автор: {{ article.author.full_name }}</p>
     <p>Дата публикации: {{ article.published_date }}</p>
     <p>Категория: {{ article.category }}</p>
@@ -14,28 +17,36 @@
     <p>{{ article.content }}</p>
     
     <h2>Комментарии:</h2>
-<table border="1">
-  <thead>
-    <tr>
-      <th>Текст комментария</th>
-      <th>Автор</th>
-      <th>Дата обновления</th>
-      <th>Изменено</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for comment in comments %}
-    <tr>
-      <td>{{ comment.content }}</td>
-      <td>{{ comment.author.full_name }}</td>
-      <td>{{ comment.updated_at }}</td>
-      <td>{% if comment.updated_at != comment.created_at %} Изменено {% endif %}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
-    <p><a href="{% url 'edit_article' article.id %}">Редактировать статью</a></p>
-    <p><a href="{% url 'delete_article' article.id %}">Удалить статью</a></p>
-    <a href="{% url 'add_comment' article.id %}">Добавить комментарий</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Текст комментария</th>
+                <th>Автор</th>
+                <th>Дата обновления</th>
+                <th>Изменено</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for comment in comments %}
+            <tr>
+                <td>{{ comment.content }}</td>
+                <td>{{ comment.author.full_name }}</td>
+                <td>{{ comment.updated_at }}</td>
+                <td>{% if comment.updated_at != comment.created_at %} Изменено {% endif %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    {% if not response %}
+        {{ response }}
+    {% else %}
+        <form action="{% url 'add_comment' article.id %}" method="post">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            {{ comment_form.errors }}
+            <input type="submit" value="Отправить">
+        </form>
+    {% endif %}
+    
 {% endblock %}
