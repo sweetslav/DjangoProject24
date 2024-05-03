@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Форма добавления нового комментария
+{% endblock %}
+
+{% block content %}
+    {% if response %}
+        {{ response }}
+    {% else %}
+        <form action="{% url 'add_comment' article.id %}" method="post">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            {{ comment_form.errors }}
+            <input type="submit" value="Отправить">
+        </form>
+    {% endif %}
+{% endblock %}

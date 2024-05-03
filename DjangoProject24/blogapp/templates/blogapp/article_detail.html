@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ article.title }} - Подробно
+{% endblock %}
+
+{% block content %}
+<h1>{{ article.title }}</h1>
+    <p>Автор: {{ article.author.full_name }}</p>
+    <p>Дата публикации: {{ article.published_date }}</p>
+    <p>Категория: {{ article.category }}</p>
+    <p>Количество просмотров: {{ article.views }}</p>
+    <p>Содержание:</p>
+    <p>{{ article.content }}</p>
+
+    <p><a href="{% url 'edit_article' article.id %}">Редактировать статью</a></p>
+    <a href="{% url 'add_comment' article.id %}">Добавить комментарий</a>
+{% endblock %}
