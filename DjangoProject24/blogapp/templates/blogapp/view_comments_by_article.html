@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Комментарии к {{ article.title }}
+{% endblock %}
+
+{% block content %}
+<h1>Comments for "{{ article.title }}"</h1>
+
+    <ul>
+        {% for comment in comments %}
+            <li>{{ comment.content }}</li>
+            <p>Author: {{ comment.author }} | Posted: {{ comment.created_at }}</p>
+        {% empty %}
+            <li>No comments yet.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'detail_article' article.id %}">Back to Article</a>
+{% endblock %}

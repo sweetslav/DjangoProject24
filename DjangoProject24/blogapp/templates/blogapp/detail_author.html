@@ -12,4 +12,5 @@
   <p><strong>Биография:</strong> {{ author.biography }}</p>
   <p><strong>Дата рождения:</strong> {{ author.birthday }}</p>
   <p><a href="{% url 'edit_author' author.id %}">Редактировать автора</a></p>
+  <p><a href="{% url 'delete_author' author.id %}">Удалить автора</a></p>
 {% endblock %}

@@ -16,6 +16,7 @@
                 <th>Дата публикации</th>
                 <th>Категория</th>
                 <th>Количество просмотров</th>
+                <th>Количество комментариев</th>
                 <th>Статус публикации</th>
             </tr>
         </thead>
@@ -24,11 +25,12 @@
             <tr>
                 <td>{{ article.id }}</td>
                 <td>{{ article.author.full_name }}</td>
-                <td><a href="{% url 'article_detail' article.id %}">{{ article.title }}</a></td>
+                <td><a href="{% url 'detail_article' article.id %}">{{ article.title }}</a></td>
                 <td>{{ article.content }}</td>
                 <td>{{ article.published_date }}</td>
                 <td>{{ article.category }}</td>
                 <td>{{ article.views }}</td>
+                <td>{{ article.count_comments_for_article }}</td>
                 <td>{{ article.published }}</td>
             </tr>
             {% endfor %}

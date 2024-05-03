@@ -29,6 +29,9 @@ class Article(models.Model):
     views = models.IntegerField(default=0)
     published = models.BooleanField(default=False)
 
+    def count_comments_for_article(self):
+        return self.comments.count()
+
     def __str__(self):
         return self.title
 
@@ -39,6 +42,10 @@ class Comment(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    @staticmethod
+    def count_comments_for_article(article_id):
+        return Comment.objects.filter(article_id=article_id).count()
 
     def __str__(self):
         return f'{self.author.username} добавил комментарий к статье: {self.article.title}'

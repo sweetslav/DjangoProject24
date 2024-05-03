@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+    Детали комментария
+{% endblock %}
+
+{% block content %}
+    <h1>Детали комментария</h1>
+    <p><strong>Автор:</strong> {{ comment.author.full_name }}</p>
+    <p><strong>Статья:</strong> <a href="{% url 'detail_article' comment.article.id %}">{{ comment.article.title }}</a></p>
+    <p><strong>Содержание:</strong> {{ comment.content }}</p>
+    <p><strong>Дата создания:</strong> {{ comment.created_at }}</p>
+    <p><strong>Дата обновления:</strong> {{ comment.updated_at }}</p>
+    <a href="{% url 'edit_comment' comment.id %}">Редактировать</a>
+    <a href="{% url 'delete_comment' comment.id %}">Удалить</a>
+{% endblock %}

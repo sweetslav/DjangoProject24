@@ -22,8 +22,8 @@
             <tr>
                 <td>{{ comment.id }}</td>
                 <td>{{ comment.author.full_name }}</td>
-                <td>{{ comment.article }}</td>
-                <td>{{ comment.content }}</td>
+                <td><a href="{% url 'detail_article' comment.article.id %}">{{ comment.article }}</a></td>
+                <td><a href="{% url 'detail_comment' comment.id %}">{{ comment.content }}</a></td>
                 <td>{{ comment.created_at }}</td>
                 <td>{{ comment.updated_at }}</td>
             </tr>

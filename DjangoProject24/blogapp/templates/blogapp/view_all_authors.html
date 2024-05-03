@@ -13,19 +13,19 @@
                 <th>Имя</th>
                 <th>Фамилия</th>
                 <th>Почта</th>
-                <th>Биография</th>
                 <th>Дата рождения</th>
+                <th>Количество статей</th>
             </tr>
         </thead>
         <tbody>
             {% for author in authors %}
             <tr>
-                <td><a href="{% url 'author_detail' author.id %}">{{ author.id }}</a></td>
+                <td><a href="{% url 'detail_author' author.id %}">{{ author.id }}</a></td>
                 <td>{{ author.first_name }}</td>
                 <td>{{ author.last_name }}</td>
                 <td>{{ author.email }}</td>
-                <td>{{ author.biography }}</td>
                 <td>{{ author.birthday }}</td>
+                <td>{{ author.article_set.count }}</td>
             </tr>
             {% endfor %}
         </tbody>

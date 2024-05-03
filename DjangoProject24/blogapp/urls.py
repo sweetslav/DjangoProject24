@@ -4,21 +4,31 @@ from . import views
 
 
 urlpatterns = [
-    path('articles/', views.view_all_articles, name='all_articles'),  # Страница со списком всех статей
-    path('authors/', views.view_all_authors, name='all_authors'),  # Страница со списком всех авторов
-    path('comments/', views.view_all_comments, name='all_comments'),  # Страница со списком всех комментариев
-    path('author/add/', views.add_author_form, name='add_author'),  # Страница для добавления нового автора
-    path('article/add/', views.add_article_form, name='add_article'), # Страница для добавления новой статьи
-    path('article/<int:article_id>/comment/', views.add_comment_form, name='add_comment'), # Страница для добавления нового комментария
+    # Статьи
+    path('articles/', views.view_all_articles, name='all_articles'),
+    path('article/add/', views.add_article_form, name='add_article'),
+    path('article/<int:article_id>/', views.detail_article, name='detail_article'),
+    path('article/<int:article_id>/edit/', views.edit_article_form, name='edit_article'),
+    path('article/<int:article_id>/delete/', views.delete_article, name='delete_article'),
+    path('article/<int:article_id>/comment/', views.add_comment_form, name='add_comment'),
+    path('article/<int:article_id>/comments', views.view_comments_by_article, name='view_comments_by_article'),
+
+    # Авторы
+    path('authors/', views.view_all_authors, name='all_authors'),
+    path('author/add/', views.add_author_form, name='add_author'),
+    path('author/<int:author_id>/', views.detail_author, name='detail_author'),
+    path('author/<int:author_id>/edit/', views.edit_author_form, name='edit_author'),
+    path('author/<int:author_id>/articles/', views.author_articles, name='author_articles'),
+    path('author/<int:author_id>/delete/', views.delete_author, name='delete_author'),
+
+    # Комментарии
+    path('comments/', views.view_all_comments, name='all_comments'),
+    path('comment/<int:comment_id>/edit/', views.edit_comment_form, name='edit_comment'),
+    path('comment/<int:comment_id>/delete/', views.delete_comment, name='delete_comment'),
+    path('comment/<int:comment_id>/', views.detail_comment, name='detail_comment'),
+
+    # О сайте и обо мне
     path('about/', views.about, name='about'),
     path('about/me/', views.aboutme, name='aboutme'),
-    path('article/<int:article_id>/', views.article_detail, name='article_detail'), # Страница с деталями конкретной статьи
-    path('article/<int:article_id>/edit/', views.edit_article_form, name='edit_article'), # Страница с формой для редактирования статьи
-    # path('article/<int:article_id>/delete/', views.delete_article_confirm, name='delete_article'), # Страница с формой для удаления статьи
-    # path('author/<int:author_id>/articles/', views.author_articles, name='author_articles'), # Страница со списком статей конкретного автора
-    path('author/<int:author_id>/', views.author_detail, name='author_detail'), # Страница с деталями конкретного автора
-    path('author/<int:author_id>/edit/', views.edit_author_form, name='edit_author'), # Страница с формой для редактирования автора
-    # path('author/<int:author_id>/delete/', views.delete_author_confirm, name='delete_author'), # Страница с формой для удаления автора
-    # path('comment/<int:comment_id>/edit/', views.edit_comment_form, name='edit_comment'), # Страница с формой для редактирования комментария
-    # path('comment/<int:comment_id>/delete/', views.delete_comment_confirm, name='delete_comment'), # Страница с формой для удаления комментария
 ]
+

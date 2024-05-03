@@ -12,7 +12,30 @@
     <p>Количество просмотров: {{ article.views }}</p>
     <p>Содержание:</p>
     <p>{{ article.content }}</p>
+    
+    <h2>Комментарии:</h2>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Текст комментария</th>
+      <th>Автор</th>
+      <th>Дата обновления</th>
+      <th>Изменено</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for comment in comments %}
+    <tr>
+      <td>{{ comment.content }}</td>
+      <td>{{ comment.author.full_name }}</td>
+      <td>{{ comment.updated_at }}</td>
+      <td>{% if comment.updated_at != comment.created_at %} Изменено {% endif %}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
     <p><a href="{% url 'edit_article' article.id %}">Редактировать статью</a></p>
+    <p><a href="{% url 'delete_article' article.id %}">Удалить статью</a></p>
     <a href="{% url 'add_comment' article.id %}">Добавить комментарий</a>
 {% endblock %}
