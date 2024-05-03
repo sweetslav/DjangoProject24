@@ -86,3 +86,14 @@ def update_article(article_id, title=None, content=None, category=None):
 def delete_article(article_id):
     article = Article.objects.get(id=article_id)
     article.delete()
+
+
+# Представление для создания 10 авторов в базу
+def write_authors(request):
+    logger.info("Someone has visited the Blog / Write Authors page ")
+    count = 10
+    for i in range(count):
+        create_fake_author_male()
+        create_fake_author_female()
+    logger.info("Created new authors")
+    return HttpResponse("Created 20 new authors")

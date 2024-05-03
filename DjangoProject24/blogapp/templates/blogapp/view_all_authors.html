@@ -20,7 +20,7 @@
         <tbody>
             {% for author in authors %}
             <tr>
-                <td>{{ author.id }}</td>
+                <td><a href="{% url 'author_detail' author.id %}">{{ author.id }}</a></td>
                 <td>{{ author.first_name }}</td>
                 <td>{{ author.last_name }}</td>
                 <td>{{ author.email }}</td>

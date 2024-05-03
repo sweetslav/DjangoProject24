@@ -9,10 +9,10 @@
     <table width="800" border="1px">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Автор</th>
-                <th>Статья</th>
-                <th>Текст</th>
+                <th>ID комментария</th>
+                <th>Автор комментария</th>
+                <th>Название статьи</th>
+                <th>Текст комментария</th>
                 <th>Дата комментария</th>
                 <th>Дата изменения</th>
             </tr>
@@ -21,7 +21,7 @@
             {% for comment in comments %}
             <tr>
                 <td>{{ comment.id }}</td>
-                <td>{{ comment.author }}</td>
+                <td>{{ comment.author.full_name }}</td>
                 <td>{{ comment.article }}</td>
                 <td>{{ comment.content }}</td>
                 <td>{{ comment.created_at }}</td>
