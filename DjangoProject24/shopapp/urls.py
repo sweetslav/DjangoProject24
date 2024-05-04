@@ -19,11 +19,18 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('', views.shop_index, name='shop_index'),
+    # Клиенты
     path('clients/', views.all_clients_view, name='all_clients_view'),
+    path('client/<int:client_id>/orders/<str:period>/', views.ordered_products_by_period, name='ordered_products_by_period'),
+
+    # Товары
     path('products/', views.all_products_view, name='all_products_view'),
+    path('product/<int:product_id>/', views.edit_product_form, name='edit_product'),
+
+    # Заказы
     path('orders/', views.all_orders_view, name='all_orders_view'),
     path('orders/<int:client_id>/', views.view_order_by_client_id, name='view_order_by_client_id'),
-    path('client/<int:client_id>/orders/<str:period>/', views.ordered_products_by_period,
-         name='ordered_products_by_period'),
+
+    # Общее
+    path('', views.shop_index, name='shop_index'),
 ]

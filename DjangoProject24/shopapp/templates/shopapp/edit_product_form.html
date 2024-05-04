@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Редактирование товара: {{ product.name }}
+{% endblock %}
+
+
+{% block content %}
+    Редактирование {{ product.id }}
+    <form method="post">
+        {% csrf_token %}
+        {{ product_form.as_p }}
+    <input type="submit" value="Отправить">
+    <button type="submit">Сохранить изменения</button>
+    </form>
+{% endblock %}

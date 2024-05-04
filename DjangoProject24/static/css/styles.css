@@ -4,6 +4,17 @@ body {
     padding: 20px;
     background-color: rgb(242, 242, 242);
 }
+td, th {
+    border: 1px solid;
+}
+table {
+    border-collapse: collapse;
+    border: 1px solid;
+    table-layout: auto;
+    margin: 0 auto;
+    text-align: center;
+    width: 1200px;
+}
 
 .container {
     max-width: 1200px;

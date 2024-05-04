@@ -1,9 +1,10 @@
 from datetime import timedelta
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Client, Order, Product
 import logging
 from faker import Faker
 from django.utils import timezone
+from .forms import ClientForm, ProductForm, OrderForm
 
 logger = logging.getLogger(__name__)
 fake = Faker()
@@ -23,6 +24,7 @@ def all_products_view(request):
     return render(request, 'shopapp/all_products_view.html', {"products": products})
 
 
+# Просмотр всех заказов
 def all_orders_view(request):
     orders_info = []
     all_orders = Order.objects.all()
@@ -41,6 +43,7 @@ def all_orders_view(request):
     return render(request, 'shopapp/all_orders_view.html', {'orders_info': orders_info})
 
 
+# Просмотр заказа по ID клиента
 def view_order_by_client_id(request, client_id):
     all_orders = Order.objects.filter(client_id=client_id)
     # print("All orders:", all_orders)  # Проверяем, что извлеклись ли заказы
@@ -62,6 +65,7 @@ def view_order_by_client_id(request, client_id):
     return render(request, 'shopapp/view_order_by_client_id.html', {'orders_info': orders_info})
 
 
+# Сортировка по дате заказа
 def ordered_products_by_period(request, client_id, period):
     if period == 'week':
         start_date = timezone.now() - timedelta(days=7)
@@ -84,3 +88,17 @@ def ordered_products_by_period(request, client_id, period):
     }
 
     return render(request, 'shopapp/ordered_products_by_period.html', context)
+
+
+# Редактирование товара
+def edit_product_form(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    if request.method == 'POST':
+        product_form = ProductForm(request.POST, instance=product)
+        if product_form.is_valid():
+            product_form.save()
+            logger.info(f'Товар {product_id} успешно отредактирован')
+            return redirect('base')
+    else:
+        product_form = ProductForm(instance=product)
+    return render(request, 'shopapp/edit_product_form.html', {'product_form': product_form, 'product': product})
