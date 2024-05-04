@@ -5,6 +5,7 @@ import logging
 from faker import Faker
 from django.utils import timezone
 from .forms import ClientForm, ProductForm, OrderForm
+from django.core.files.storage import FileSystemStorage
 
 logger = logging.getLogger(__name__)
 fake = Faker()
@@ -94,7 +95,7 @@ def ordered_products_by_period(request, client_id, period):
 def edit_product_form(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
-        product_form = ProductForm(request.POST, instance=product)
+        product_form = ProductForm(request.POST, request.FILES, instance=product)
         if product_form.is_valid():
             product_form.save()
             logger.info(f'Товар {product_id} успешно отредактирован')
