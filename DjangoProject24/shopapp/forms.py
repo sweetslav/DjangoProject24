@@ -12,7 +12,7 @@ class ClientForm(forms.ModelForm):
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['name', 'description', 'price', 'quantity']
+        fields = ['name', 'description', 'price', 'quantity', 'photo']
         widgets = {}
 
 
