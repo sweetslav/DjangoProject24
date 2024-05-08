@@ -48,4 +48,4 @@ class Comment(models.Model):
         return Comment.objects.filter(article_id=article_id).count()
 
     def __str__(self):
-        return f'{self.author.username} добавил комментарий к статье: {self.article.title}'
+        return f'{self.author.full_name} добавил комментарий к статье: {self.article.title}'
