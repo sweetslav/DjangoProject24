@@ -12,8 +12,8 @@ class Command(BaseCommand):
     help = 'Create fake orders'
 
     def add_arguments(self, parser):
-        parser.add_argument('num_orders', nargs='?', type=int, default=1, help='Number of orders to create')
-        parser.add_argument('num_products_per_order', nargs='?', type=int, default=3,
+        parser.add_argument('--num_orders', nargs='?', type=int, default=1, help='Number of orders to create')
+        parser.add_argument('--num_products_per_order', nargs='?', type=int, default=3,
                             help='Number of products per order')
 
     def handle(self, *args, **options):

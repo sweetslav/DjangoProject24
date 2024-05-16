@@ -9,10 +9,10 @@ class Command(BaseCommand):
     help = 'Create a new product'
 
     def add_arguments(self, parser):
-        parser.add_argument('name', type=str, help='Product name')
-        parser.add_argument('description', type=str, help='Product email')
-        parser.add_argument('price', type=float, help='Product price')
-        parser.add_argument('quantity', type=int, help='Product address')
+        parser.add_argument('--name', type=str, help='Product name')
+        parser.add_argument('--description', type=str, help='Product email')
+        parser.add_argument('--price', type=float, help='Product price')
+        parser.add_argument('--quantity', type=int, help='Product address')
 
     def handle(self, *args, **options):
         name = options['name']
