@@ -80,7 +80,6 @@ class OrderAdmin(admin.ModelAdmin):
     )
 
 
-
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(Client, ClientAdmin)
